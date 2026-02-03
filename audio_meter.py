@@ -131,7 +131,8 @@ class AudioMeter:
         audio_array = np.frombuffer(audio_data, dtype=np.int16)
         
         # Calculate RMS (Root Mean Square)
-        rms = np.sqrt(np.mean(audio_array**2))
+        # Convert to float to avoid overflow when squaring
+        rms = np.sqrt(np.mean(audio_array.astype(np.float64)**2))
         
         # Avoid log of zero
         if rms < 1:
