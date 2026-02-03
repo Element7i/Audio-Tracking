@@ -5,7 +5,7 @@ A Python-based GUI application to meter audio levels from a USB device or System
 """
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import pyaudio
 import numpy as np
 import threading
@@ -242,7 +242,10 @@ class AudioMeter:
             self.update_meter()
             
         except Exception as e:
-            print(f"Error starting audio stream: {e}")
+            messagebox.showerror(
+                "Audio Stream Error",
+                f"Failed to start audio stream:\n{str(e)}"
+            )
             self.running = False
             
     def stop_meter(self):

@@ -6,6 +6,7 @@ Tests the core logic without GUI or audio devices
 
 import numpy as np
 import sys
+import os
 
 
 def test_db_calculation():
@@ -111,7 +112,11 @@ def test_color_zones():
 
 def test_code_structure():
     """Test that the main code file has proper structure."""
-    with open('audio_meter.py', 'r') as f:
+    # Get the directory containing this test file
+    test_dir = os.path.dirname(os.path.abspath(__file__))
+    audio_meter_path = os.path.join(test_dir, 'audio_meter.py')
+    
+    with open(audio_meter_path, 'r') as f:
         code = f.read()
     
     # Check for required components
